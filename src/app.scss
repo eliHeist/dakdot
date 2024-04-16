@@ -1,0 +1,50 @@
+body {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+
+    padding: 0;
+    margin: 0;
+    background-color: #0c0c0c;
+    color: rgb(224, 224, 224);
+}
+
+.content-grid{
+    --padding-inline: 1rem;
+    --content-max-width: 1200px;
+    --breakout-max-width: 1600px;
+    --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+
+    display: grid;
+    grid-template-columns:
+        [full-width-start] minmax(var(--padding-inline), 1fr)
+        [breakout-start] minmax(0, var(--breakout-size))
+        [content-start] min(
+        100% - (var(--padding-inline) * 2),
+        var(--content-max-width)
+        )
+        [content-end]
+        minmax(0, var(--breakout-size)) [breakout-end]
+        minmax(var(--padding-inline), 1fr) [full-width-end];
+}
+
+.content-grid > :not(.breakout, .full-width) {
+    grid-column: content;
+}
+
+.content-grid > .breakout {
+    grid-column: breakout;
+}
+
+.content-grid > .full-width {
+    grid-column: full-width;
+}
+
+
+a{
+    color: var(--clr-primary-600);
+    text-decoration: none;
+}
+
