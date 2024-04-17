@@ -18,6 +18,10 @@
 </header>
 
 <style lang="scss">
+    header{
+        position: sticky;
+        top: 0;
+    }
     nav {
         display: flex;
         align-items: center;
@@ -30,6 +34,8 @@
 
             a{
                 font-weight: 500;
+                color: var(--clr-white);
+
                 &:hover{
                     color: var(--clr-primary-600);
                 }
