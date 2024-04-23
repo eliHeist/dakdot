@@ -15,39 +15,64 @@
         }
 
 
-        const classes = backdrop.querySelectorAll('.circle')
-        console.log(classes)
+        const circles = backdrop.querySelectorAll('.circle')
+        const circlesArray = Array.from(circles);
+        
+        let circle_count = 0
+
         let size = 8
         let size_step = 0
         let scale = 1
         let scale_step = 0.2
         let color = 200
-        let step = (200-3) / classes.length
+        let step = (200-3) / circles.length
         step = Math.floor(step);
 
         let y = 0
-        let y_step = 4
+        let y_step = 0
 
-        classes.forEach(circle => {
-            scale+=1+scale_step
-            color-=step
-            scale_step+=0.1
-            size+=(size_step+1)
-            size_step+=0.2
-            y+=y_step
-            y_step -= (4/(classes.length-15))
+        let z_index = circles.length
+
+        circlesArray.reverse().forEach(circle => {
+            circle_count++ // increment circle counter
+
+            color-=step // decrement color value to make it a darker grey
+
+            size+=size_step
             
-            gsap.set(circle, {
+            if (circle_count < 5) {
+                size_step+=.1
+            } else if (circle_count < 15) {
+                size_step+=.08
+                y_step+=.2
+            } else if (circle_count < 20) {
+                size_step+=.3
+                y_step+=.0001
+            } else {
+                size_step+=.7
+                y_step-=.5
+            }
+            y+=y_step
+            
+            let options = {
                 height: `${size}rem`, 
                 width: `${size}rem`, 
                 y: `-${y}%`,
-                outlineColor: `rgba(${color}, ${color}, ${color}, 1)`
-            })
+                z: z_index--,
+                outlineColor: `rgba(${color}, ${color}, ${color}, 1)`,
+            }
+            if (circle_count % 2 !== 0) {
+                options['backgroundColor'] = `rgba(${color}, ${color}, ${color}, 1)`
+            }
+
+
+            gsap.set(circle, options)
+            console.log(z_index)
         });
     });
 </script>
 
-<div id="backdrop" class="backdrop">
+<div id="backdrop" class="backdrop full-width">
     <div class="container">
         <div class="circle dot"></div>
         <div class="circle"></div>
@@ -56,8 +81,9 @@
 
 <style lang="scss">
     .backdrop {
-        height: 80vh;
+        height: 100vh;
         position: relative;
+        overflow: hidden;
 
         .container {
             position: absolute;
@@ -77,10 +103,17 @@
                 
                 border-radius: 50%;
                 transform-origin: center 90%;
-
-                &.dot {
+                
+                &:nth-of-type(odd){
+                    background-color: var(--clr-dark-950);
+                }
+                &:nth-of-type(even){
                     background-color: var(--clr-white);
                 }
+
+                // &:last-of-type {
+                //     background-color: var(--clr-dark-950);
+                // }
             }
         }
 

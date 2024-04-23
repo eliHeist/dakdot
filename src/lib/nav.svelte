@@ -19,8 +19,11 @@
 
 <style lang="scss">
     header{
-        position: sticky;
+        position: fixed;
         top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
     }
     nav {
         display: flex;

@@ -1,8 +1,9 @@
 <script lang="ts">
     import HomeBanner from "$lib/components/home-banner.svelte";
+    import Sphere from "$lib/components/sphere.svelte";
 </script>
 
-<HomeBanner/>
+<Sphere/>
 
 <section class="full-width content-grid">
     <h2 class="large-header">DESIGN YOUR <br>BRAND</h2>
