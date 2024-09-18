@@ -65,7 +65,7 @@
             <img src="/images/try.jpeg" alt="">
         </div>
         <footer>
-            <a href="#" class="large-link glitch">PORTFOLIO</a>
+            <a href="/portfolio" class="large-link glitch">PORTFOLIO</a>
         </footer>
     </div>
 </section>

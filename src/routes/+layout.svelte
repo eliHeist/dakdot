@@ -1,6 +1,7 @@
 <script>
     import Nav from "$lib/nav.svelte";
-import "../app.scss";
+    import "../app.scss";
+    import '@fortawesome/fontawesome-free/css/all.min.css';
 </script>
 
 <Nav />

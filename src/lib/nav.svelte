@@ -10,7 +10,7 @@
         </a>
         <menu>
             <a href="#">SERVICES</a>
-            <a href="#">PORTFOLIO</a>
+            <a href="/portfolio">PORTFOLIO</a>
             <a href="#">ABOUT</a>
             <a href="#">GET IN TOUCH</a>
         </menu>

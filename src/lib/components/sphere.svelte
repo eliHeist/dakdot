@@ -9,7 +9,7 @@
 
         // set the camera
         const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
-        camera.position.set( 0, -.25, 5 );
+        camera.position.set( 0, -.1, 5 );
         
         // set the renderer and canvas
         const canvas = document.querySelector(".webgl") as HTMLCanvasElement;
@@ -63,7 +63,7 @@
 
         // Create a function to animate the camera movement
         function animateCamera() {
-            const duration = 16;
+            const duration = 64;
             // Create a timeline for the camera movement
             const timeline = gsap.timeline({ repeat: -1 });
 
@@ -75,7 +75,7 @@
         }
 
         function animateSphere() {
-            const duration = 16;
+            const duration = 200;
             // Create a timeline for changing the color from #ffffff to #ff0000
             const timeline = gsap.timeline({ repeat: -1 });
 
@@ -88,12 +88,13 @@
         animateSphere()
 
         function animateLight() {
+            const duration = 200;
             // create a timeline for changing the color of the light from #ffffff to #2222ff
             const timeline = gsap.timeline({ repeat: -1 });
             // change the color from #ffffff to #2222ff
-            timeline.to(light.color, { r: 0.5, g: 0.5, b: 1, duration: 16 });
+            timeline.to(light.color, { r: 0.5, g: 0.5, b: 1, duration: duration });
             // change the color from #2222ff to #ffffff
-            timeline.to(light.color, { r: 1, g: 1, b: 1, duration: 16 });
+            timeline.to(light.color, { r: 1, g: 1, b: 1, duration: duration });
         }
         animateLight()
 
