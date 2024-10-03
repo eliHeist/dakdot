@@ -1,88 +1,86 @@
 <script lang="ts">
-    import HomeBanner from "$lib/components/home-banner.svelte";
-    import Sphere from "$lib/components/sphere.svelte";
+
+    import * as Card from "$lib/components/ui/card/index.js";
+    import { Button } from "$lib/components/ui/button/index.js";
+
+    import Icon from '@iconify/svelte';
+    import Hero from "$lib/components/hero.svelte";
+
+    export let data;
 </script>
 
-<Sphere/>
+<Hero/>
 
 <section class="full-width content-grid">
-    <h2 class="large-header">DESIGN YOUR <br>BRAND</h2>
-    <div class="cards-grid">
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
+    <h2 class="large-header my-24">DESIGN YOUR <br>BRAND</h2>
+    <div class="grid gap-16 sm:grid-cols-2 lg:grid-cols-3">
+        {#each data.graphics_data as service}
+        <div class="">
+            <Card.Root class="group">
+                <Card.Header>
+                    <Card.Title class="text-2xl">{service.title}</Card.Title>
+                </Card.Header>
+                <Card.Content>
+                    <Card.Description class="text-lg">{service.description}</Card.Description>
+                </Card.Content>
+                <!-- <Card.Footer class="flex justify-between">
+                    <Button variant="outline">
+                        <Icon icon="material-symbols-light:arrow-circle-right-outline" class="text-lg mr-2"/>
+                        Find out more
+                    </Button>
+                </Card.Footer> -->
+            </Card.Root>
         </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
+        {/each}
     </div>
 </section>
 
 <section class="full-width content-grid">
-    <h2 class="large-header">CREATE AND<br>AUTOMATE YOUR<br>SYSTEM</h2>
-    <div class="cards-grid">
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
+    <h2 class="large-header my-24">CREATE AND<br>AUTOMATE YOUR<br>SYSTEM</h2>
+    <div class="grid gap-16 sm:grid-cols-2 lg:grid-cols-3">
+        {#each data.dev_data as service}
+        <div class="">
+            <Card.Root class="max-w-mdd group">
+                <Card.Header>
+                    <Card.Title class="text-2xl">{service.title}</Card.Title>
+                </Card.Header>
+                <Card.Content>
+                    <Card.Description class="text-lg">{service.description}</Card.Description>
+                </Card.Content>
+                <!-- <Card.Footer class="flex justify-between">
+                    <Button variant="outline">
+                        <Icon icon="material-symbols-light:arrow-circle-right-outline" class="text-lg mr-2"/>
+                        Find out more
+                    </Button>
+                </Card.Footer> -->
+            </Card.Root>
         </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
+        {/each}
     </div>
 </section>
 
-<section class="full-width content-grid margin-y">
-    <div class="work-grid">
+<section class="full-width content-grid">
+    <div class="">
         <header>
-            <h2 class="large-header">TOP<br>WORK</h2>
+            <h2 class="large-header my-24">
+                <p>TOP</p>
+                <p>WORK</p>
+            </h2>
         </header>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
+        <div class="grid gap-16">
+            {#each data.projects_data as project }
+            <div class="flex even:flex-row-reverse odd:flex-row group">
+                <div class="w-11/12 max-w-lg">
+                    <img src="{project.img_url}" alt="" class="w-full rounded-xl aspect-square object-cover">
+                    <h3 class="mt-4 text-lg font-semibold">{project.title}</h3>
+                    <p class="text-muted-foreground mt-3">{project.description}</p>
+                </div>
+            </div>
+            {/each}
         </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <footer>
-            <a href="/portfolio" class="large-link glitch">PORTFOLIO</a>
-        </footer>
     </div>
 </section>
 
-<section class="full-width content-grid margin-y">
-    <div class="feedback-grid">
-        <h2 class="large-header left">FEED<br>BACK</h2>
-        <div class="content-container">
-            <div class="card">
-                <p class="feedback">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consequuntur voluptatum vel voluptas aspernatur, nesciunt nobis deserunt laborum velit veritatis. Assumenda consequatur reiciendis, corrupti nam commodi nostrum beatae! Aliquid, ipsam!
-                </p>
-                <span class="name">John Doe</span>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="full-width content-grid call-to-action">
     <h2 class="large-header">Interested?</h2>

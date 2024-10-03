@@ -1,47 +1,107 @@
-@import './scss/colors';
-@import './scss/button';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings: "slnt" 0;
+@layer base {
+    :root {
+        --background: 0 100% 99.02%;
+        --foreground: 0 0% 4.71%;
 
-    padding: 0;
-    margin: 0;
-    background-color: #0c0c0c;
-    color: rgb(224, 224, 224);
+        --muted: 220 14.3% 95.9%;
+        --muted-foreground: 220 8.9% 46.1%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 224 71.4% 4.1%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 224 71.4% 4.1%;
+
+        --border: 220 13% 91%;
+        --input: 220 13% 91%;
+
+        --primary: 220.9 39.3% 11%;
+        --primary-foreground: 210 20% 98%;
+
+        --secondary: 220 14.3% 95.9%;
+        --secondary-foreground: 220.9 39.3% 11%;
+
+        --accent: 220 14.3% 95.9%;
+        --accent-foreground: 220.9 39.3% 11%;
+
+        --destructive: 0 72.2% 50.6%;
+        --destructive-foreground: 210 20% 98%;
+
+        --ring: 224 71.4% 4.1%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 0 0% 4.71%;
+        --foreground: 0 100% 99.02%;
+
+        --muted: 355.91 15% 16.9%;
+        --muted-foreground: 355.91 1% 64.9%;
+
+        --popover: 224 71.4% 4.1%;
+        --popover-foreground: 210 20% 98%;
+
+        --card: 0 0% 6.63%;
+        --card-foreground: 0 0% 85.47%;
+
+        --border: 0 0% 16.9%;
+        --input: 215 27.9% 16.9%;
+
+        --primary: 355.91 100% 56.86%;
+        --primary-foreground: 356 100% 97.06%;
+
+        --secondary: 215 27.9% 16.9%;
+        --secondary-foreground: 210 20% 98%;
+
+        --accent: 355.91 27.9% 16.9%;
+        --accent-foreground: 355.91 20% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 20% 98%;
+
+        --ring: 216 12.2% 83.9%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
 .content-grid {
     --padding-inline: 1rem;
-    --content-max-width: 1200px;
-    --breakout-max-width: 1600px;
+    --content-max-width: 1400px;
+    --breakout-max-width: 1800px;
     --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
 
     display: grid;
     grid-template-columns:
         [full-width-start] minmax(var(--padding-inline), 1fr) [breakout-start] minmax(0, var(--breakout-size)) [content-start] min(100% - (var(--padding-inline) * 2),
             var(--content-max-width)) [content-end] minmax(0, var(--breakout-size)) [breakout-end] minmax(var(--padding-inline), 1fr) [full-width-end];
-}
 
-.content-grid > :not(.breakout, .full-width) {
-    grid-column: content;
-}
+    > {
+        :not(.breakout, .full-width) {
+            grid-column: content;
+        }
 
-.content-grid > .breakout {
-    grid-column: breakout;
-}
+        .breakout {
+            grid-column: breakout;
+        }
 
-.content-grid > .full-width {
-    grid-column: full-width;
-}
-
-
-a {
-    color: var(--clr-primary-600);
-    text-decoration: none;
+        .full-width {
+            grid-column: full-width;
+        }
+    }
 }
 
 ::selection {
@@ -55,80 +115,31 @@ a {
     text-align: center;
     color: var(--clr-white);
 
-    &.left{
+    &.left {
         text-align: left;
     }
 
-    &.right{
+    &.right {
         text-align: right;
     }
 }
 
-.glitch {
-    
+body {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.link {
+    transition: all 300ms ease-in-out;
     &:hover {
-        text-shadow: 0.05em 0 0 var(--clr-primary-600);
-        animation: glitch 400ms;
+        text-decoration: underline;
+        color: var(--primary);
     }
 }
-
-@keyframes glitch {
-    0% {
-        text-shadow: 0.05em 0 0 var(--clr-primary-600);
-    }
-
-    14% {
-        text-shadow: 0.05em 0 0 var(--clr-primary-600),
-            -0.05em -0.025em 0 var(--clr-dark-500),
-            -0.025em 0.05em 0 var(--clr-primary-200);
-    }
-
-    15% {
-        text-shadow: -0.05em -0.025em 0 var(--clr-primary-600),
-            0.025em 0.025em 0 var(--clr-dark-500),
-            -0.05em -0.05em 0 var(--clr-primary-200);
-    }
-
-    49% {
-        text-shadow: -0.05em -0.025em 0 var(--clr-primary-600),
-            0.025em 0.025em 0 var(--clr-dark-500),
-            -0.05em -0.05em 0 var(--clr-primary-200);
-    }
-
-    50% {
-        text-shadow: 0.025em 0.05em 0 var(--clr-primary-600),
-            0.05em 0 0 var(--clr-dark-500), 0 -0.05em 0 var(--clr-primary-200);
-    }
-
-    99% {
-        text-shadow: 0.025em 0.05em 0 var(--clr-primary-600),
-            0.05em 0 0 var(--clr-dark-500), 0 -0.05em 0 var(--clr-primary-200);
-    }
-
-    100% {
-        text-shadow: -0.025em 0 0 var(--clr-primary-600);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    ::before,
-    ::after {
-        animation-delay: -1ms !important;
-        animation-duration: 1ms !important;
-        animation-iteration-count: 1 !important;
-        background-attachment: initial !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0s !important;
-        transition-delay: 0s !important;
-    }
-}
-
-image{
-    width: 100%;
-    height: 100%;
-}
-
-// buttons
-

@@ -1,9 +1,8 @@
-<script>
-    import Nav from "$lib/nav.svelte";
-    import "../app.scss";
-    import '@fortawesome/fontawesome-free/css/all.min.css';
+<script>import "../app.css";
+import Nav from "$lib/nav.svelte";
+import "../app.scss";
 </script>
 
-<Nav />
+<Nav></Nav>
 <slot></slot>
 <footer>Footer</footer>
