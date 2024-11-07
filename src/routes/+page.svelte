@@ -1,225 +1,126 @@
 <script lang="ts">
-    import HomeBanner from "$lib/components/home-banner.svelte";
-    import Sphere from "$lib/components/sphere.svelte";
+    import { onMount } from "svelte";
+    import { gsap } from "gsap";
+
+    import Button from "$lib/components/ui/button/button.svelte";
+    import * as Card from "$lib/components/ui/card";
+
+    onMount(async () => {
+        // Dynamically import ScrollTrigger in the client side
+        const { default: ScrollTrigger } = await import("gsap/ScrollTrigger");
+
+        // Register the plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.from(".hero-content", {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+        });
+
+        // Process section animations
+        gsap.to(".process-step", {
+            scrollTrigger: {
+                trigger: ".process-section",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1,
+            },
+            x: 0,
+            opacity: 1,
+            stagger: 0.5,
+        });
+    });
 </script>
 
-<Sphere/>
-
-<section class="full-width content-grid">
-    <h2 class="large-header">DESIGN YOUR <br>BRAND</h2>
-    <div class="cards-grid">
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-    </div>
-</section>
-
-<section class="full-width content-grid">
-    <h2 class="large-header">CREATE AND<br>AUTOMATE YOUR<br>SYSTEM</h2>
-    <div class="cards-grid">
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-    </div>
-</section>
-
-<section class="full-width content-grid margin-y">
-    <div class="work-grid">
-        <header>
-            <h2 class="large-header">TOP<br>WORK</h2>
-        </header>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <div class="card">
-            <img src="/images/try.jpeg" alt="">
-        </div>
-        <footer>
-            <a href="#" class="large-link glitch">PORTFOLIO</a>
-        </footer>
-    </div>
-</section>
-
-<section class="full-width content-grid margin-y">
-    <div class="feedback-grid">
-        <h2 class="large-header left">FEED<br>BACK</h2>
-        <div class="content-container">
-            <div class="card">
-                <p class="feedback">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consequuntur voluptatum vel voluptas aspernatur, nesciunt nobis deserunt laborum velit veritatis. Assumenda consequatur reiciendis, corrupti nam commodi nostrum beatae! Aliquid, ipsam!
-                </p>
-                <span class="name">John Doe</span>
+<section class="hero min-h-screen flex items-center relative">
+    <div class="px-4">
+        <div class="hero-content max-w-2xl">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                Digital Solutions. Design Excellence.
+            </h1>
+            <p class="text-xl mb-8">
+                Empowering brands through web development and design.
+            </p>
+            <div class="flex space-x-4">
+                <a href="/portfolio">
+                    <Button variant="outline" size="lg"
+                        >See Our Services</Button>
+                </a>
+                <a href="/portfolio">
+                    <Button size="lg">Explore Portfolio</Button>
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="full-width content-grid call-to-action">
-    <h2 class="large-header">Interested?</h2>
-    <p class="large-header">Get in touch with us</p>
-    <a href="#" class="button">Contact Options</a>
+<section class="about py-20">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6">Who We Are</h2>
+                <p class="text-lg">
+                    At DakDot, we combine technology and creativity to offer
+                    high-quality, people-centered solutions. With a focus on
+                    delivering scalable web development and stunning design, we
+                    help brands build a strong digital presence.
+                </p>
+            </div>
+            <div class="relative">
+                <!-- Add team image here -->
+                <div class="bg-gray-300 h-[400px] rounded-lg"></div>
+            </div>
+        </div>
+    </div>
 </section>
 
+<section class="process-section py-20">
+    <div class="px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center">How We Work</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {#each ["Get Client's Request", "Come Up with Solutions", "Create a Prototype", "Deliver the Final Product"] as step, i}
+                <Card.Root>
+                    <Card.Header>
+                        <div class="text-4xl font-bold text-primary-600 mb-4">
+                            {i + 1}
+                        </div>
+                        <Card.Title>{step}</Card.Title>
+                    </Card.Header>
+                    <Card.Content>
+                        <Card.Description>
+                            {#if i === 0}
+                                We start by understanding your needs. Our team
+                                listens carefully to ensure every detail is
+                                captured.
+                            {:else if i === 1}
+                                Next, we brainstorm creative solutions tailored
+                                to your brand and goals.
+                            {:else if i === 2}
+                                We build prototypes and wireframes to give you a
+                                tangible view of what your solution will look
+                                like.
+                            {:else}
+                                After refining the prototype, we craft the final
+                                product, ready to impress and perform.
+                            {/if}
+                        </Card.Description>
+                    </Card.Content>
+                </Card.Root>
+            {/each}
+        </div>
+    </div>
+</section>
 
-<style lang="scss">
-    section {
-        margin-bottom: 10rem;
-
-        &.margin-y{
-            margin: 10rem 0;
-        }
-    }
-    .cards-grid{
-        display: grid;
-        grid-template-columns: 1fr 1.2fr 1.6fr 1.2fr 1fr;
-        gap: 4rem;
-        width: 100%;
-        place-items: center;
-        justify-content: center;
-        
-        .card {
-            width: 100%;
-            // height: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 1rem;
-            overflow: hidden;
-            transform-origin: center;
-            transition: width .25s cubic-bezier(0.075, 0.82, 0.165, 1);
-            
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            &:last-child, &:first-child {
-                transform: translateY(-160%);
-            }
-            
-            &:nth-child(2), &:nth-child(4) {
-                transform: translateY(-60%);
-            }
-
-            &:hover {
-                width: 125%;
-            }
-        }
-    }
-
-    .work-grid {
-        display: grid;
-        gap: 4rem;
-        width: 100%;
-        place-content: center;
-        
-        @media screen and (min-width: 768px) {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(auto-fill, 1fr);
-            text-align: left;
-        }
-
-        .large-header{
-            margin: 0;
-        }
-
-        .card {
-            width: 100%;
-            // height: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 1rem;
-            overflow: hidden;
-            grid-row: span 2;
-            
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-
-        footer{
-            display: grid;
-            place-content: center;
-            padding: 2rem 0;
-
-            .large-link{
-                font-size: clamp(2rem, 5vw, 5rem);
-                font-weight: 800;
-                color: var(--clr-white);
-            }
-        }
-    }
-
-    .feedback-grid{
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-        gap: 4rem;
-
-        .content-container{
-            .card{
-                padding: 2.8rem;
-                background-color: var(--clr-dark-900);
-                border-radius: 1rem;
-
-                .feedback{
-                    font-size: 1.4rem;
-                }
-
-                .name{
-                    font-style: italic;
-                    font-weight: 600;
-                    &::before{
-                        content: "~ ";
-                    }
-                }
-            }
-        }
-    }
-
-    .call-to-action{
-        display: grid;
-        place-content: center;
-        place-items: center;
-        
-        .large-header{
-            margin: 0;
-
-            &:first-child{
-                background: linear-gradient(to right, var(--clr-primary-600), blue);
-                background-clip: text;
-                color: transparent;
-            }
-        }
-    }
-</style>
+<section class="cta py-20 bg-primary-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-6">Ready to Elevate Your Brand?</h2>
+        <a
+            href="/contact"
+            class="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg hover:bg-gray-100">
+            Get Started
+        </a>
+    </div>
+</section>

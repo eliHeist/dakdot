@@ -1,130 +1,128 @@
-@import './scss/colors';
-@import './scss/button';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings: "slnt" 0;
+@layer base {
+    :root {
+        --background: 0 0% 87.8%;
+        --foreground: 0 0% 4.7%;
 
-    padding: 0;
-    margin: 0;
-    background-color: #0c0c0c;
-    color: rgb(224, 224, 224);
-}
+        --muted: 60 4.8% 95.9%;
+        --muted-foreground: 25 5.3% 44.7%;
 
-.content-grid {
-    --padding-inline: 1rem;
-    --content-max-width: 1200px;
-    --breakout-max-width: 1600px;
-    --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+        --popover: 0 0% 100%;
+        --popover-foreground: 20 14.3% 4.1%;
 
-    display: grid;
-    grid-template-columns:
-        [full-width-start] minmax(var(--padding-inline), 1fr) [breakout-start] minmax(0, var(--breakout-size)) [content-start] min(100% - (var(--padding-inline) * 2),
-            var(--content-max-width)) [content-end] minmax(0, var(--breakout-size)) [breakout-end] minmax(var(--padding-inline), 1fr) [full-width-end];
-}
+        --card: 0 0% 100%;
+        --card-foreground: 20 14.3% 4.1%;
 
-.content-grid > :not(.breakout, .full-width) {
-    grid-column: content;
-}
+        --border: 20 5.9% 90%;
+        --input: 20 5.9% 90%;
 
-.content-grid > .breakout {
-    grid-column: breakout;
-}
+        --primary: 24 9.8% 10%;
+        --primary-foreground: 60 9.1% 97.8%;
 
-.content-grid > .full-width {
-    grid-column: full-width;
-}
+        --secondary: 60 4.8% 95.9%;
+        --secondary-foreground: 24 9.8% 10%;
 
+        --accent: 60 4.8% 95.9%;
+        --accent-foreground: 24 9.8% 10%;
 
-a {
-    color: var(--clr-primary-600);
-    text-decoration: none;
-}
+        --destructive: 0 72.2% 50.6%;
+        --destructive-foreground: 60 9.1% 97.8%;
 
-::selection {
-    background-color: var(--clr-primary-500);
-    color: var(--clr-white);
-}
+        --ring: 20 14.3% 4.1%;
 
-.large-header {
-    font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 900;
-    text-align: center;
-    color: var(--clr-white);
-
-    &.left{
-        text-align: left;
+        --radius: 0.5rem;
     }
 
-    &.right{
-        text-align: right;
+    .dark {
+        --background: 0 0% 4.7%;
+        --foreground: 0 0% 87.8%;
+
+        --muted: 0 0% 15.1%;
+        --muted-foreground: 0 0% 50%;
+
+        --popover: 20 14.3% 4.1%;
+        --popover-foreground: 60 9.1% 97.8%;
+
+        --card: 20 0% 4.1%;
+        --card-foreground: 0 0% 70.8%;
+
+        --border: 12 0% 15.1%;
+        --input: 12 0% 15.1%;
+
+        --primary: 60 9.1% 97.8%;
+        --primary-foreground: 24 9.8% 10%;
+
+        --secondary: 12 6.5% 15.1%;
+        --secondary-foreground: 60 9.1% 97.8%;
+
+        --accent: 12 6.5% 15.1%;
+        --accent-foreground: 60 9.1% 97.8%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 60 9.1% 97.8%;
+
+        --ring: 24 5.7% 82.9%;
     }
 }
 
-.glitch {
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings: "slnt" 0;
+    }
+
+    ::selection {
+        background-color: var(--clr-primary-500);
+        color: var(--clr-white);
+    }
+
+    .content-grid {
+        --padding-inline: 1rem;
+        --content-max-width: 1200px;
+        --breakout-max-width: 1600px;
+        --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
     
-    &:hover {
-        text-shadow: 0.05em 0 0 var(--clr-primary-600);
-        animation: glitch 400ms;
+        display: grid;
+        grid-template-columns:
+            [full-width-start] minmax(var(--padding-inline), 1fr) [breakout-start] minmax(0, var(--breakout-size)) [content-start] min(100% - (var(--padding-inline) * 2),
+                var(--content-max-width)) [content-end] minmax(0, var(--breakout-size)) [breakout-end] minmax(var(--padding-inline), 1fr) [full-width-end];
+    }
+    
+    .content-grid > :not(.breakout, .full-width) {
+        grid-column: content;
+    }
+    
+    .content-grid > .breakout {
+        grid-column: breakout;
+    }
+    
+    .content-grid > .full-width {
+        grid-column: full-width;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        ::before,
+        ::after {
+            animation-delay: -1ms !important;
+            animation-duration: 1ms !important;
+            animation-iteration-count: 1 !important;
+            background-attachment: initial !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0s !important;
+            transition-delay: 0s !important;
+        }
     }
 }
-
-@keyframes glitch {
-    0% {
-        text-shadow: 0.05em 0 0 var(--clr-primary-600);
-    }
-
-    14% {
-        text-shadow: 0.05em 0 0 var(--clr-primary-600),
-            -0.05em -0.025em 0 var(--clr-dark-500),
-            -0.025em 0.05em 0 var(--clr-primary-200);
-    }
-
-    15% {
-        text-shadow: -0.05em -0.025em 0 var(--clr-primary-600),
-            0.025em 0.025em 0 var(--clr-dark-500),
-            -0.05em -0.05em 0 var(--clr-primary-200);
-    }
-
-    49% {
-        text-shadow: -0.05em -0.025em 0 var(--clr-primary-600),
-            0.025em 0.025em 0 var(--clr-dark-500),
-            -0.05em -0.05em 0 var(--clr-primary-200);
-    }
-
-    50% {
-        text-shadow: 0.025em 0.05em 0 var(--clr-primary-600),
-            0.05em 0 0 var(--clr-dark-500), 0 -0.05em 0 var(--clr-primary-200);
-    }
-
-    99% {
-        text-shadow: 0.025em 0.05em 0 var(--clr-primary-600),
-            0.05em 0 0 var(--clr-dark-500), 0 -0.05em 0 var(--clr-primary-200);
-    }
-
-    100% {
-        text-shadow: -0.025em 0 0 var(--clr-primary-600);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    ::before,
-    ::after {
-        animation-delay: -1ms !important;
-        animation-duration: 1ms !important;
-        animation-iteration-count: 1 !important;
-        background-attachment: initial !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0s !important;
-        transition-delay: 0s !important;
-    }
-}
-
-
-// buttons
-
