@@ -1,6 +1,6 @@
 <script>
     export let width = 50;
-    export let fill = "#FFFAFA";
+    export let fill = "#FDFEFD";
 </script>
 
 <svg width="{width}" viewBox="0 0 90 120" fill="none">

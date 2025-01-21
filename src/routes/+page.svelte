@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { gsap } from "gsap";
+    import { ArrowRight } from "lucide-svelte";
 
     import Button from "$lib/components/ui/button/button.svelte";
     import * as Card from "$lib/components/ui/card";
@@ -38,19 +39,20 @@
 <section class="hero min-h-screen flex items-center relative">
     <div class="px-4">
         <div class="hero-content max-w-2xl">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                Digital Solutions. Design Excellence.
-            </h1>
+            <div>
+                <h1 class="text-6xl md:text-7xl font-extrabold mb-6">
+                    Creative 
+                    <span>Digital</span>
+                    <span class="font-extralight">Solutions Agency</span>
+                </h1>
+
+            </div>
             <p class="text-xl mb-8">
                 Empowering brands through web development and design.
             </p>
             <div class="flex space-x-4">
                 <a href="/portfolio">
-                    <Button variant="outline" size="lg"
-                        >See Our Services</Button>
-                </a>
-                <a href="/portfolio">
-                    <Button size="lg">Explore Portfolio</Button>
+                    <Button variant="outline" size="lg">Explore Portfolio</Button>
                 </a>
             </div>
         </div>
@@ -61,17 +63,35 @@
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="text-4xl font-bold mb-6">Who We Are</h2>
-                <p class="text-lg">
-                    At DakDot, we combine technology and creativity to offer
-                    high-quality, people-centered solutions. With a focus on
-                    delivering scalable web development and stunning design, we
-                    help brands build a strong digital presence.
+                <p class="text-3xl">
+                    Driven by a passion to empower purpose-driven organizations with creative solutions that inspire growth and impact. We specialize in transforming visions into reality through expert branding, web development, and digital campaigns. Our mission is to deliver world-class, innovative services tailored to the unique needs of our Clients. <br>
+                    Together, we create meaningful change through creativity.
                 </p>
             </div>
-            <div class="relative">
-                <!-- Add team image here -->
-                <div class="bg-gray-300 h-[400px] rounded-lg"></div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20">
+    <div class="px-4">
+        <div class="grid gap-y-32">
+            <div class="wrapper">
+                <figure class="rounded-3xl bg-gray-500 aspect-square"></figure>
+                <div class="flex justify-between items-center mt-6">
+                    <h3 class="text-xl">Project Name goes Here.</h3>
+                    <button class="aspect-square h-14 rounded-full grid place-content-center outline outline-1 outline-foreground">
+                        <ArrowRight class="-rotate-45" />
+                    </button>
+                </div>
+            </div>
+            <div class="wrapper">
+                <figure class="rounded-3xl bg-gray-500 aspect-[3/4]"></figure>
+                <div class="flex justify-between items-center mt-6">
+                    <h3 class="text-xl">Project Name goes Here.</h3>
+                    <button class="aspect-square h-14 rounded-full grid place-content-center outline outline-1 outline-foreground">
+                        <ArrowRight class="-rotate-45" />
+                    </button>
+                </div>
             </div>
         </div>
     </div>
