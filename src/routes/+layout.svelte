@@ -26,7 +26,7 @@
 >
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/">
-            <LogoDot />
+            <LogoDot width="{30}"/>
         </a>
 
         <button class="md:hidden" on:click="{() => (isMenuOpen = !isMenuOpen)}">
@@ -62,8 +62,8 @@
     <slot />
 </main>
 
-<footer class="full-width py-12">
-    <div class="container mx-auto px-4">
+<footer class="breakout py-12">
+    <div class="">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <h3 class="text-xl font-bold mb-4">DakDot</h3>
