@@ -5,6 +5,7 @@
 
     import Button from "$lib/components/ui/button/button.svelte";
     import * as Card from "$lib/components/ui/card";
+    import HowWeWork from "./HowWeWork.svelte";
 
     onMount(async () => {
         // Dynamically import ScrollTrigger in the client side
@@ -97,42 +98,8 @@
     </div>
 </section>
 
-<section class="process-section py-20">
-    <div class="px-4">
-        <h2 class="text-4xl font-bold mb-12 text-center">How We Work</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {#each ["Get Client's Request", "Come Up with Solutions", "Create a Prototype", "Deliver the Final Product"] as step, i}
-                <Card.Root>
-                    <Card.Header>
-                        <div class="text-4xl font-bold text-primary-600 mb-4">
-                            {i + 1}
-                        </div>
-                        <Card.Title>{step}</Card.Title>
-                    </Card.Header>
-                    <Card.Content>
-                        <Card.Description>
-                            {#if i === 0}
-                                We start by understanding your needs. Our team
-                                listens carefully to ensure every detail is
-                                captured.
-                            {:else if i === 1}
-                                Next, we brainstorm creative solutions tailored
-                                to your brand and goals.
-                            {:else if i === 2}
-                                We build prototypes and wireframes to give you a
-                                tangible view of what your solution will look
-                                like.
-                            {:else}
-                                After refining the prototype, we craft the final
-                                product, ready to impress and perform.
-                            {/if}
-                        </Card.Description>
-                    </Card.Content>
-                </Card.Root>
-            {/each}
-        </div>
-    </div>
-</section>
+<HowWeWork/>
+
 
 <section class="cta py-20 bg-primary-600 text-white">
     <div class="container mx-auto px-4 text-center">

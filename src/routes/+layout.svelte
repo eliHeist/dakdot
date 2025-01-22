@@ -1,5 +1,6 @@
 <script lang="ts">
     import "../app.scss";
+    import "../app.ts";
     import { onMount } from "svelte";
     import { Menu, X } from "lucide-svelte";
     import LogoDot from "$lib/components/logo-dot.svelte";
