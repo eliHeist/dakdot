@@ -132,14 +132,15 @@
     background: radial-gradient(90.16% 90.16% at 33.09% 100%, #1A2C57 0%, #0F1623 68.5%, #0A0C0A 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
-.bg-grad-rad-red{
-    background: radial-gradient(93.49% 93.49% at 45.59% 100%, #65161A 0%, #120D0B 74%, #0A0C0A 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-}
-
 .bg-grad-rad-yellow{
     background: radial-gradient(96.37% 96.37% at 70.83% 100%, #49420C 0%, #34310B 19.13%, #26240B 45.5%, #16160A 79.5%, #0A0C0A 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
 .bg-grad-rad-white{
     background: radial-gradient(91.73% 95.34% at 50% 95.34%, #4D4D4D 0%, #191615 74%, #0A0C0A 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+
+.bg-grad-rad-red {
+    background: radial-gradient(65.41% 85.18% at 89.22% 78.42%, rgba(238, 37, 49, 0.5) 0%, rgba(238, 37, 49, 0.25) 40.03%, rgba(238, 37, 49, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }

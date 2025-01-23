@@ -1,27 +1,13 @@
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from 'lenis'
 
-// gsap.registerPlugin(ScrollTrigger)
+console.log("Script")
 
-// const sections: NodeListOf<HTMLElement> =
-//     document.querySelectorAll(".hww .step");
-
-// sections.forEach((section, index) => {
-//     ScrollTrigger.create({
-//         trigger: section,
-//         start: "top top",
-//         pin: true,
-//         pinSpacing: false,
-//         snap: 1
-//     })
-//     gsap.from(section.children, {
-//         y: 50,
-//         opacity: 0,
-//         scrollTrigger: {
-//             trigger: section,
-//             start: "top center",
-//             end: "top top",
-//             toggleActions: "play none reverse reset",
-//         }
-//     })
-// });
+// Initialize Lenis
+const lenis = new Lenis({
+    autoRaf: true,
+});
+  
+// Listen for the scroll event and log the event data
+lenis.on('scroll', (e) => {
+    console.log(e);
+});
